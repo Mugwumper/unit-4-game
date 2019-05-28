@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <title>unit-4-game</title>
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous"
+  />
+
+    <!-- Added link to the jQuery library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  
+  
+  <link rel="stylesheet" href="assets/css/style.css" />
+
+  <head>
+    <meta charset="UTF-8" />
+    <title>Scope Activity #1</title>
+  </head>
+
+  <body>
+    <h1>Crytstals Collector</h1>
+    <h2>✨Click the crystals to begin✨</h2>
+    
+    <h4 id="wins">(wins)</h4>
+    <h4 id="losses">(losses)</h4>
+    <h4 id="currentTarget">(gets replaced by current target)</h4>
+    <h4 id="currentTotal">(currentTotal)</h4>
+    <h4 id="currentValue">(gets replaced by current value)</h4>   
+    <h4 id="sbmPanel">(gets replaced by status messages)</h4>        
+    
+    <button onclick="c1()">A</button>
+    <button onclick="c2()">B</button>
+    <button onclick="c3()">C</button>
+    <button onclick="c4()">D</button>
+    <button onclick="reset()">reset</button>
+    <p id="details">(gets replaced by details)</p>        
+    
+  </body>
+  <script src="assets/javascript/game.js"></script>
+</html>
