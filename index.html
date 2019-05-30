@@ -23,23 +23,41 @@
   </head>
 
   <body>
-    <h1>Crytstals Collector</h1>
-    <h2>✨Click the crystals to begin✨</h2>
-    
-    <h4 id="wins">(wins)</h4>
-    <h4 id="losses">(losses)</h4>
-    <h4 id="currentTarget">(gets replaced by current target)</h4>
-    <h4 id="currentTotal">(currentTotal)</h4>
-    <h4 id="currentValue">(gets replaced by current value)</h4>   
-    <h4 id="sbmPanel">(gets replaced by status messages)</h4>        
-    
-    <button onclick="c1()">A</button>
-    <button onclick="c2()">B</button>
-    <button onclick="c3()">C</button>
-    <button onclick="c4()">D</button>
-    <button onclick="reset()">reset</button>
-    <p id="details">(gets replaced by details)</p>        
-    
+    <div id="main">
+      <h1>Mana Collector</h1>
+      <h2>✨Click the magical items to begin✨</h2>
+      
+      <h4 id="wins">(wins)</h4>
+      <h4 id="losses">(losses)</h4>
+      <h1 id="currentTarget">(gets replaced by current target)</h1>
+      <h4 id="currentTotal">(currentTotal)</h4>
+      <h4 id="currentValue">(gets replaced by current value)</h4>   
+      
+
+      <!-- <input type="image" onclick="c1()" src="" alt="asdfa"/> -->
+      <button onclick="c1()">a🎶</button>
+      <button onclick="c2()">b💎</button>
+      <button onclick="c3()">c💍</button>
+      <button onclick="c4()">d🔆</button>
+      <button onclick="reset()">reset</button>
+      <h4 id="sbmPanel">(gets replaced by status messages)</h4>        
+
+      <div class="notificationClose">
+          <pre>
+Image you are crafting a new something in a fantasy game and to make it interesting you have to work for it...
+
+Welcome to the Item Mana Aggregation Tool
+
+The goal of the game is to get the Current Total to equal but not exceed the Target. 
+
+Each Item adds it's value to the Current Total when pressed. A value that is between 1 and 12 and only revealed when it is first used.
+
+Here is an example. Let's say the game begins with a target of 40, pressing Item A adds 1. We now know A's value, 1. Pressing the B Item adds 10. The Current Total is now at 11. A press of Item C and 3 more are added to the Current Total. We are already at 14 so to solve the puzzle let's add C twice more and B twice more as well. This will total 40 our target value and we have won the game. 
+
+A new game is started automatically.
+            </pre>     
+      </div>
+    </div>        
   </body>
   <script src="assets/javascript/game.js"></script>
 </html>

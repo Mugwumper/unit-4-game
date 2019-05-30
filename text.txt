@@ -1,0 +1,10 @@
+Welcome to the Crystal Aggregation Tool
+
+The goal of the game is to get the Current Total to equal but not exceed the Target. 
+
+Each crystal adds it's value to the Current Total when pressed. A value that is between 1 and 12 and only revealed when it is first used.
+
+
+Here is an example. Let's say the game begins with a target of 40, pressing Crystal A adds 1. We now know A's value, 1. Pressing the B Crystal adds 10. The Current Total is now at 11. A press of Crystal C and 3 more are added to the Current Total. We are already at 14 so to solve the puzzle let's add C twice more and B twice more as well. This will total 40 our target value and we have won the game. 
+
+A new game is started by pressing Next. 

@@ -1,0 +1,36 @@
+body {
+    background-color: black;
+    color: grey;
+}
+
+pre {
+    color: lightgray;
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+input {
+    color: white;
+}
+
+#main {
+    margin: 30px;
+}
+
+.notificationClose {
+    position:absolute;
+    z-index:1;
+    left:10%;
+    top:55px;
+    width: 500px;
+    height: 500px;  
+    padding: 50px;
+    color: white;
+    background-color: rgb(56, 45, 45);
+    border: 1px solid red;
+    opacity: 0.95;
+    box-sizing: content-box;
+  }

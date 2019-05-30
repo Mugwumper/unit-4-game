@@ -3,15 +3,27 @@ var losses = 0;
 var currentTarget = 0;
 var currentValue = 0;
 var currentTotal = 0;
-var c1v = 0; // crystal 1's value
+var c1v = 0; // item 1's value
 var c2v = 0;
 var c3v = 0;
 var c4v = 0;
 var timeoutID;
 var gTimeoutVar;
+var gmsToShow = 1000;
+var gmsToShowLastMove = 4000;
 
 reset();
-detailBegining();
+
+$(".notificationClose").on("click", function () {
+    $(this).fadeOut(3000,function(){
+        $(this).remove();
+    })
+    flashready();
+});
+
+function flashready() {
+   // todo: make buttons light up or something; 
+}
 
 function reset() {
     wins = 0;
@@ -25,7 +37,6 @@ function reset() {
 
 function c1() {
     applyvalue(c1v);
-    detailCV("c1");
 }
 
 function c2() {
@@ -49,6 +60,7 @@ function applyvalue(cv) {
 }
 
 function checkStatus() {
+    updateGUI();
     if (currentTotal === currentTarget) {
         // report win and reset
         reportWin();
@@ -58,7 +70,8 @@ function checkStatus() {
             // report lose and reset
         } else {
             // this must be a still active game.
-            updateGUI();
+            //updateGUI();
+            updateGUIforMove();
         }
     }
 }
@@ -89,17 +102,17 @@ function generateGame() {
     c2v = 0;
     c3v = 0;
     c4v = 0;
-    c1v = generateCrystalValue();
-    c2v = generateCrystalValue();
-    c3v = generateCrystalValue();
-    c4v = generateCrystalValue();
-    sbm("main:"+currentTarget+" c1v="+c1v+" c2v="+c2v+" c3v="+c3v+" c4v="+c4v);
+    c1v = generateItemValue();
+    c2v = generateItemValue();
+    c3v = generateItemValue();
+    c4v = generateItemValue();
+    //sbm("main:"+currentTarget+" c1v="+c1v+" c2v="+c2v+" c3v="+c3v+" c4v="+c4v);
 }
 
-function generateCrystalValue() {
-    // Each crystal should have a random hidden value between 1 - 12.
+function generateItemValue() {
+    // Each item should have a random hidden value between 1 - 12.
     var random = 0;
-    do { // loop until the value is not used by other crystals.
+    do { // loop until the value is not used by other items.
         random = Math.floor(Math.random() * 12) + 1;
     } while ( ! isUnique(random));
     return random;
@@ -124,41 +137,28 @@ function updateGUI() {
     $("#wins").text('wins: ' + wins);
     $("#losses").text('losses: ' + losses);
     $("#currentTarget").text('Target: ' + currentTarget);
-    $("#currentValue").text('Current Value: ' + currentValue);
+    if (currentValue === 0) {
+        $("#currentValue").text('Current Value: ? (unknown)');
+    } else {
+        $("#currentValue").text('Current Value: ' + currentValue);
+    }
+}
+
+function updateGUIforMove() {
+    var msg = "added "+currentValue+" to the total we now have " + currentTotal + " and we need " + currentTarget + ".";
+    sbm(msg, gmsToShowLastMove);    
 }
     
-function sbm(msg) {
+// sbm = Status Bar Message
+function sbm(msg, msToShow) {
+    if ( msToShow === undefined ) {
+        msToShow = gmsToShow;
+    }
     clearTimeout(gTimeoutVar);
     gTimeoutVar = $("#sbmPanel").text(msg);
-    setTimeout(clearSBM, 1000);
+    setTimeout(clearSBM, msToShow);
 }
 
 function clearSBM() {
-    $("#sbmPanel").text('_');
+    $("#sbmPanel").text('');
 }    
-
-function sleep(milliseconds) {
-    setTimeout(clearSBM, 100);
-    var start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
-      if ((new Date().getTime() - start) > milliseconds){
-        break;
-      }
-    }
-}
-
-
-function detailBegining() {
-htm = "Welcome to the Crystal Aggregation Tool <BR><BR>Press each crystal to apply it's value to the Current Total. Beware for each crystal has a value between 1 and 12. The values don't change until starting a new game. The goal is to learn the values while applying them such that you can make Current Total match the Target. Go over this value and you lose.<BR><BR>Press any Crystal to begin." ;
-$("#details").html(htm);
-//$("#details").text(htm);
-}
-
-function detailCV(cv) {
-    if (cv === "c1") {
-        htm = "You mashed A. It has a value of " ;
-        $("#details").html(htm);        
-
-
-    }
-}
