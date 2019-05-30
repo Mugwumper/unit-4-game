@@ -23,9 +23,9 @@ input {
 .notificationClose {
     position:absolute;
     z-index:1;
-    left:10%;
+    left:30px;
     top:55px;
-    width: 500px;
+    width: 90%;
     height: 500px;  
     padding: 50px;
     color: white;
