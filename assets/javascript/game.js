@@ -10,7 +10,8 @@ var c4v = 0;
 var timeoutID;
 var gTimeoutVar;
 var gmsToShow = 1000;
-var gmsToShowLastMove = 4000;
+var gmsToShowLastMove = 5000;
+var gmsToShowLastItem = gmsToShowLastMove + 300;
 
 
 reset();
@@ -19,13 +20,6 @@ $(".notificationClose").on("click", function () {
     $(this).fadeOut(2000,function(){
         $(this).remove();
     })
-    flashready();
-});
-
-$(".notificationItem").on("click", function () {
-    $(this).fadeIn(300,function(){});
-    $(this).fadeOut(300,function(){});
-//    $(this).remove();
     flashready();
 });
 
@@ -41,6 +35,7 @@ function reset() {
     currentTotal = 0;
     updateGUI();
     sbm("game reset");
+    sbm2("");
 }
 
 function c1() {
@@ -48,26 +43,18 @@ function c1() {
     applyitem(ItemsCurrent[0]);
 }
 
-function applyitem(item) {
-    spookynotification(item.name);
-}
-
-function spookynotification(name) {
-    $("#itemName").text("afasd "+name);
-    $(".notificationItem").fadeIn(300,function(){});
-    $(".notificationItem").fadeOut(600,function(){});
-}
-
-
 function c2() {
     applyvalue(c2v);
+    applyitem(ItemsCurrent[1]);
 }
 
 function c3() {
     applyvalue(c3v);
+    applyitem(ItemsCurrent[2]);
 }
 
 function c4() {
+    applyitem(ItemsCurrent[3]);
     applyvalue(c4v);
 }
 
@@ -77,6 +64,11 @@ function applyvalue(cv) {
         currentValue = cv;
         checkStatus();
     }
+}
+
+function applyitem(item) {
+    //$("#itemName").text(item.name);
+    sbm2(item.name, gmsToShowLastItem);
 }
 
 function checkStatus() {
@@ -126,13 +118,13 @@ function generateGame() {
 }
 
 function updateGUIitems() { // one time per game
-    $("#c1").html('a'+ItemsCurrent[0].symbol);
+    $("#c1").html("a<font size='6'>" + ItemsCurrent[0].symbol + "</font>");
     $("#c1").attr('title', ItemsCurrent[0].name);
-    $("#c2").text('b'+ItemsCurrent[1].symbol);
+    $("#c2").html("b<font size='6'>" + ItemsCurrent[1].symbol + "</font>");
     $("#c2").attr('title', ItemsCurrent[1].name);
-    $("#c3").text('c'+ItemsCurrent[2].symbol);
+    $("#c3").html("c<font size='6'>" + ItemsCurrent[2].symbol + "</font>");
     $("#c3").attr('title', ItemsCurrent[2].name);
-    $("#c4").text('d'+ItemsCurrent[3].symbol);
+    $("#c4").html("d<font size='6'>" + ItemsCurrent[3].symbol + "</font>");
     $("#c4").attr('title', ItemsCurrent[3].name);
 }
 
@@ -174,6 +166,22 @@ function clearSBM() {
     $("#sbmPanel").text('');
 }    
 
-$( "#foo" ).bind( "click", function() {
-    alert( "User clicked on 'foo.'" );
-  });
+  
+// sbm = Status Bar Message
+function sbm2(msg, msToShow) {
+    $("#itemName").stop();
+    $("#itemName").text('');
+    $("#itemName").fadeIn(300);
+    if ( msToShow === undefined ) {
+        msToShow = gmsToShow + 200;
+    }
+    clearTimeout(gTimeoutVar);
+    gTimeoutVar = $("#itemName").text(msg);
+    setTimeout(clearSBM2, msToShow);
+}
+
+function clearSBM2() {
+    $("#itemName").fadeOut(2000);
+//    $("#itemName").text('');
+}    
+

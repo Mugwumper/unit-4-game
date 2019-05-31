@@ -45,17 +45,67 @@ function createItems() {
     var MIObj = new Mi("💀","Skull of the Demon Child");
     ItemsAll.push(MIObj);
 
-    var MIObj = new Mi("💀","Skull2");
+    var MIObj = new Mi("🌠","Star of Destruction");
     ItemsAll.push(MIObj);
 
-    var MIObj = new Mi("💀","Skull3d");
+    var MIObj = new Mi("🔥","Flame of the Ancients");
     ItemsAll.push(MIObj);
 
-    var MIObj = new Mi("💀","Skull o4");
+    var MIObj = new Mi("⚡","Bolt of very frightening");
     ItemsAll.push(MIObj);
 
-    var MIObj = new Mi("💀","Skull of the5");
+    var MIObj = new Mi("🌬","(not real sure about this ones 'power')");
     ItemsAll.push(MIObj);
+
+    var MIObj = new Mi("🗿","Idol of the Watchers");
+    ItemsAll.push(MIObj);
+
+    var MIObj = new Mi("🎇","Flare of Destiny");
+    ItemsAll.push(MIObj);
+
+    var MIObj = new Mi("🏔","Spirit of the Mountain");
+    ItemsAll.push(MIObj);
+
+    var MIObj = new Mi("🔮","Future Vision");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("⛓","Links to the Past");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("💫","Orbit of Twins");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("🕯","Candle of the Sorcerer");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("♨","Snakes from the Pit");
+    ItemsAll.push(MIObj);
+
+    var MIObj = new Mi("♿","Chair of Perseverance");
+    ItemsAll.push(MIObj);
+
+    var MIObj = new Mi("⛇","Demon of Winter");
+    ItemsAll.push(MIObj);
+
+    var MIObj = new Mi("❧","Ivy of Pain");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("⛒","Cross of Out");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("⛩","Shrien  of Delight");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("🔱","Master of The Seas");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("🈲","Prohibited Extract");
+    ItemsAll.push(MIObj);
+    
+    var MIObj = new Mi("🈴","Symbol of the Passing Grade");
+    ItemsAll.push(MIObj);
+    
+    
 }
 
 function setCurrentItems() {
@@ -76,7 +126,7 @@ function setCurrentItems() {
         do { // loop until the value is not used by other items.
             random = Math.floor(Math.random() * TotalItemCount) + 1;
         } while ( ! isIndexUnique(random));
-        return (random -1);
+        return (random);
     }
     
     function isIndexUnique(random) {
@@ -85,6 +135,11 @@ function setCurrentItems() {
                 (c3 !== random) &&
                 (c4 !== random)); 
     }
+
+    c1 = c1-1;
+    c2 = c2-1;
+    c3 = c3-1;
+    c4 = c4-1;
 
     ItemsCurrent.length = 0;
 

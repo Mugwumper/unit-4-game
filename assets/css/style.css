@@ -12,6 +12,16 @@ pre {
     word-wrap: break-word;       /* Internet Explorer 5.5+ */
 }
 
+#itemName {
+     /* todo: make scary */
+    line-height: 1.6;
+    color: red;
+}
+
+#resetbutton {
+    margin: 30px;
+
+}
 input {
     color: white;
 }
