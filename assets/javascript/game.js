@@ -12,12 +12,20 @@ var gTimeoutVar;
 var gmsToShow = 1000;
 var gmsToShowLastMove = 4000;
 
+
 reset();
 
 $(".notificationClose").on("click", function () {
-    $(this).fadeOut(3000,function(){
+    $(this).fadeOut(2000,function(){
         $(this).remove();
     })
+    flashready();
+});
+
+$(".notificationItem").on("click", function () {
+    $(this).fadeIn(300,function(){});
+    $(this).fadeOut(300,function(){});
+//    $(this).remove();
     flashready();
 });
 
@@ -37,7 +45,19 @@ function reset() {
 
 function c1() {
     applyvalue(c1v);
+    applyitem(ItemsCurrent[0]);
 }
+
+function applyitem(item) {
+    spookynotification(item.name);
+}
+
+function spookynotification(name) {
+    $("#itemName").text("afasd "+name);
+    $(".notificationItem").fadeIn(300,function(){});
+    $(".notificationItem").fadeOut(600,function(){});
+}
+
 
 function c2() {
     applyvalue(c2v);
@@ -93,36 +113,27 @@ function nextGame() {
     updateGUI();
 }
 
-
 function generateGame() {
+    initItems();
     currentTotal = 0;
     currentValue = 0;
     currentTarget = generateTarget();
-    c1v = 0;
-    c2v = 0;
-    c3v = 0;
-    c4v = 0;
-    c1v = generateItemValue();
-    c2v = generateItemValue();
-    c3v = generateItemValue();
-    c4v = generateItemValue();
-    //sbm("main:"+currentTarget+" c1v="+c1v+" c2v="+c2v+" c3v="+c3v+" c4v="+c4v);
+    c1v = ItemsCurrent[0].ivalue;
+    c2v = ItemsCurrent[1].ivalue;
+    c3v = ItemsCurrent[2].ivalue;
+    c4v = ItemsCurrent[3].ivalue;
+    updateGUIitems();
 }
 
-function generateItemValue() {
-    // Each item should have a random hidden value between 1 - 12.
-    var random = 0;
-    do { // loop until the value is not used by other items.
-        random = Math.floor(Math.random() * 12) + 1;
-    } while ( ! isUnique(random));
-    return random;
-}
-
-function isUnique(random) {
-    return ((c1v !== random) && 
-            (c2v !== random) &&
-            (c3v !== random) &&
-            (c4v !== random)); 
+function updateGUIitems() { // one time per game
+    $("#c1").html('a'+ItemsCurrent[0].symbol);
+    $("#c1").attr('title', ItemsCurrent[0].name);
+    $("#c2").text('b'+ItemsCurrent[1].symbol);
+    $("#c2").attr('title', ItemsCurrent[1].name);
+    $("#c3").text('c'+ItemsCurrent[2].symbol);
+    $("#c3").attr('title', ItemsCurrent[2].name);
+    $("#c4").text('d'+ItemsCurrent[3].symbol);
+    $("#c4").attr('title', ItemsCurrent[3].name);
 }
 
 function generateTarget() {
@@ -162,3 +173,7 @@ function sbm(msg, msToShow) {
 function clearSBM() {
     $("#sbmPanel").text('');
 }    
+
+$( "#foo" ).bind( "click", function() {
+    alert( "User clicked on 'foo.'" );
+  });

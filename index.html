@@ -35,10 +35,10 @@
       
 
       <!-- <input type="image" onclick="c1()" src="" alt="asdfa"/> -->
-      <button onclick="c1()">a🎶</button>
-      <button onclick="c2()">b💎</button>
-      <button onclick="c3()">c💍</button>
-      <button onclick="c4()">d🔆</button>
+      <button id="c1" onclick="c1()">a🎶</button>
+      <button id="c2" onclick="c2()">b💎</button>
+      <button id="c3" onclick="c3()">c💍</button>
+      <button id="c4" onclick="c4()">d🔆</button>
       <button onclick="reset()">reset</button>
       <h4 id="sbmPanel">(gets replaced by status messages)</h4>        
 
@@ -57,7 +57,15 @@ A new game is started automatically.
             </pre>     
             <center>click to close this panel</center>
       </div>
+
+      <div class="notificationItem">
+              <center id="itemName">click to close this panel</center>
+      </div>
+  
+
+
     </div>        
   </body>
+  <script src="assets/javascript/Items.js"></script>
   <script src="assets/javascript/game.js"></script>
 </html>

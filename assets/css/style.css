@@ -34,3 +34,20 @@ input {
     opacity: 0.95;
     box-sizing: content-box;
   }
+
+
+  
+.notificationItem {
+    position:absolute;
+    z-index:1;
+    left:30px;
+    top:55px;
+    width: 200px;
+    height: 70px;  
+    padding: 50px;
+    color: white;
+    background-color: rgb(56, 45, 45);
+    border: 1px solid red;
+    opacity: 0.95;
+    box-sizing: content-box;
+  }
