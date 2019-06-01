@@ -18,16 +18,25 @@ pre {
     color: red;
 }
 
+button {
+    color: rgb(192, 133, 133);
+}
+
 #resetbutton {
     margin: 30px;
-
+    color: black;
 }
+
 input {
     color: white;
 }
 
 #main {
     margin: 30px;
+}
+
+#symbol {
+    font-size: 50px;
 }
 
 .notificationClose {

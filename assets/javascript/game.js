@@ -3,10 +3,6 @@ var losses = 0;
 var currentTarget = 0;
 var currentValue = 0;
 var currentTotal = 0;
-var c1v = 0; // item 1's value
-var c2v = 0;
-var c3v = 0;
-var c4v = 0;
 var timeoutID;
 var gTimeoutVar;
 var gmsToShow = 1000;
@@ -38,24 +34,25 @@ function reset() {
     sbm2("");
 }
 
-function c1() {
-    applyvalue(c1v);
+function buttonA() {
     applyitem(ItemsCurrent[0]);
 }
 
-function c2() {
-    applyvalue(c2v);
+function buttonB() {
     applyitem(ItemsCurrent[1]);
 }
 
-function c3() {
-    applyvalue(c3v);
+function buttonC() {
     applyitem(ItemsCurrent[2]);
 }
 
-function c4() {
+function buttonD() {
     applyitem(ItemsCurrent[3]);
-    applyvalue(c4v);
+}
+
+function applyitem(item) {
+    applyvalue(item.ivalue);
+    sbm2(item.name, gmsToShowLastItem);
 }
 
 function applyvalue(cv) {
@@ -64,11 +61,6 @@ function applyvalue(cv) {
         currentValue = cv;
         checkStatus();
     }
-}
-
-function applyitem(item) {
-    //$("#itemName").text(item.name);
-    sbm2(item.name, gmsToShowLastItem);
 }
 
 function checkStatus() {
@@ -82,7 +74,6 @@ function checkStatus() {
             // report lose and reset
         } else {
             // this must be a still active game.
-            //updateGUI();
             updateGUIforMove();
         }
     }
@@ -107,25 +98,25 @@ function nextGame() {
 
 function generateGame() {
     initItems();
-    currentTotal = 0;
-    currentValue = 0;
-    currentTarget = generateTarget();
-    c1v = ItemsCurrent[0].ivalue;
-    c2v = ItemsCurrent[1].ivalue;
-    c3v = ItemsCurrent[2].ivalue;
-    c4v = ItemsCurrent[3].ivalue;
+    initLocalVars();
     updateGUIitems();
 }
 
+function initLocalVars() {
+    currentTotal = 0;
+    currentValue = 0;
+    currentTarget = generateTarget();
+}
+
 function updateGUIitems() { // one time per game
-    $("#c1").html("a<font size='6'>" + ItemsCurrent[0].symbol + "</font>");
-    $("#c1").attr('title', ItemsCurrent[0].name);
-    $("#c2").html("b<font size='6'>" + ItemsCurrent[1].symbol + "</font>");
-    $("#c2").attr('title', ItemsCurrent[1].name);
-    $("#c3").html("c<font size='6'>" + ItemsCurrent[2].symbol + "</font>");
-    $("#c3").attr('title', ItemsCurrent[2].name);
-    $("#c4").html("d<font size='6'>" + ItemsCurrent[3].symbol + "</font>");
-    $("#c4").attr('title', ItemsCurrent[3].name);
+    $("#buttonA").html("a<div id='symbol'>" + ItemsCurrent[0].symbol + "</div>");
+    $("#buttonA").attr('title', ItemsCurrent[0].name);
+    $("#buttonB").html("b<div id='symbol'>" + ItemsCurrent[1].symbol + "</div>");
+    $("#buttonB").attr('title', ItemsCurrent[1].name);
+    $("#buttonC").html("c<div id='symbol'>" + ItemsCurrent[2].symbol + "</div>");
+    $("#buttonC").attr('title', ItemsCurrent[2].name);
+    $("#buttonD").html("d<div id='symbol'>" + ItemsCurrent[3].symbol + "</div>");
+    $("#buttonD").attr('title', ItemsCurrent[3].name);
 }
 
 function generateTarget() {
@@ -154,6 +145,9 @@ function updateGUIforMove() {
     
 // sbm = Status Bar Message
 function sbm(msg, msToShow) {
+    $("#sbmPanel").stop();
+    $("#sbmPanel").text('');
+    $("#sbmPanel").fadeIn(300);
     if ( msToShow === undefined ) {
         msToShow = gmsToShow;
     }
@@ -163,11 +157,10 @@ function sbm(msg, msToShow) {
 }
 
 function clearSBM() {
-    $("#sbmPanel").text('');
+    $("#sbmPanel").fadeOut(2000);
 }    
-
   
-// sbm = Status Bar Message
+// sbm2 = (quick replication of above code to satisfy new function)
 function sbm2(msg, msToShow) {
     $("#itemName").stop();
     $("#itemName").text('');
@@ -182,6 +175,5 @@ function sbm2(msg, msToShow) {
 
 function clearSBM2() {
     $("#itemName").fadeOut(2000);
-//    $("#itemName").text('');
 }    
 
